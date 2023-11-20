@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYZ to LAS Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .example-points {
+            background-color: #e6f7ff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+
+        .btn-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn-convert {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>XYZ to LAS Converter</h1>
+    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <script>
+                alert("{{ messages[0] }}");
+            </script>
+        {% endif %}
+    {% endwith %}
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <p>Please make sure your XYZ file is space-separated, like this:</p>
+        <p class="example-points">11.456 16.725 57.256</p>
+        
+        <input type="file" name="file" accept=".xyz" class="file-input">
+        
+        <div class="btn-container">
+            <input type="submit" value="Convert and Download" class="btn-convert">
+        </div>
+    </form>
+</body>
+</html>
